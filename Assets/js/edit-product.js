@@ -1,0 +1,28 @@
+var appRegister=new Vue(
+{
+    el:"#form-edit-product",
+    data:
+    {
+        id:"",
+        name:"",
+        description:"",
+        category:"",
+        price:0,
+        quantity:0,
+        image:""
+    },
+    methods:
+    {
+        select:function(data)
+        {
+            this.id=data._id;
+            this.name=data.name;
+            this.description=data.description;
+            this.category=data.category;
+            this.price=data.price;
+            this.quantity=data.quantity;
+            this.image=data.image;
+            $("#modalUpdateProduct").modal('show');
+        }
+    }
+});

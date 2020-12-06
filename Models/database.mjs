@@ -3,7 +3,7 @@ import fs from "fs";
 
 const data = fs.readFileSync("./Models/credentials.txt",{encoding:'utf8', flag:'r'}).split("\n");
 mongoose.connect(
-    `mongodb://${data[0]}:${data[1]}@ds033639.mlab.com:33639/inventory`,
+    `mongodb+srv://${data[0]}:${data[1]}@cluster0.uldfg.mongodb.net/<dbname>?retryWrites=true&w=majority`,
     {useNewUrlParser: true, useUnifiedTopology: true}
 );
 
@@ -21,12 +21,17 @@ const UserSchema=new mongoose.Schema(
 const ProductSchema=new mongoose.Schema(
 {
     name:String,
-    price:String,
+    description:String,
+    price:{type:Number,default:0,min:0},
     category:String,
+    image:String,
     quantity:{type:Number,default:0,min:0}
 });
 
 const User = mongoose.model('User', UserSchema);
 const Product = mongoose.model('Product', ProductSchema);
+
+global.User=User;
+global.Product=Product;
 
 export default mongoose;

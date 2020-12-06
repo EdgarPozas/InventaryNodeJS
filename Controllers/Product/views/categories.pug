@@ -1,0 +1,33 @@
+include ../../Default/default
+doctype html
+html(lang="es")
+    head
+        +head(category)
+    body
+        +navigation-bar()
+        .col-11.m-auto
+            .row.mt-5.p-5
+                if products.length==0
+                    .col-12.p-5
+                        .p-5
+                            h1 ¡Oh no!, there are not products
+                            p if you want to add a product click the next button
+                            button(data-toggle="modal" data-target="#modalRegister") Register
+                else
+                    each product in products
+                        +item_product(product)
+        +footer()
+        if user
+            +modal_predefined("modalEdit")
+            +modal_predefined("modalNewProduct")
+            +modal_predefined("modalUpdateProduct")
+        else
+            +modal_predefined("modalRegister")
+            +modal_predefined("modalLogin")
+            
+        +scripts()
+        if user
+            script(src=baseUrl+"/js/edit-user.js")
+            script(src=baseUrl+"/js/edit-product.js")
+        else
+            script(src=baseUrl+"/js/register.js")

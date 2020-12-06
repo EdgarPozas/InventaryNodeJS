@@ -70,11 +70,21 @@ html(lang="es")
                 .col-12
                     h1 The future is now!
                     p Everything you want buy you'll find here, let's start and <b>register</b> to post and buy amazing products!
-                
         +footer()
+        if user
+            +modal_predefined("modalEdit")
+            +modal_predefined("modalNewProduct")
+        else
+            +modal_predefined("modalRegister")
+            +modal_predefined("modalLogin")
+            +modal("modalRegisterResult","Register result",code==1?"Successful registration":"Registration not successful")
+        
         +scripts()
-            
-            
+        if user
+            script(src=baseUrl+"/js/edit-user.js")
+        else    
+            script(src=baseUrl+"/js/register.js")
         
-        
-        
+        if code!=0
+            script.
+                $('#modalRegisterResult').modal('toggle');

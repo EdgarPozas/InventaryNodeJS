@@ -1,0 +1,29 @@
+var appRegister=new Vue(
+{
+    el:"#form-edit-user",
+    data:
+    {
+        fullName:"",
+        email:"",
+        password:"",
+        re_password:""
+    },
+    mounted()
+    {
+        this.fullName=$("[name='fullName']").attr("data-def");
+        this.email=$("[name='email']").attr("data-def");
+        this.password=$("[name='password']").attr("data-def");
+        this.re_password=$("[name='re_password']").attr("data-def");
+    },
+    methods:
+    {
+        register:function(event)
+        {
+            if(this.password!=this.re_password)
+            {
+                event.preventDefault();
+                return;
+            }
+        }
+    }
+});

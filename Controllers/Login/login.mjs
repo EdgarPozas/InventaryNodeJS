@@ -1,13 +1,19 @@
 import express from "express";
+import middleware from "../Middleware/middleware.js";
 const app= express();
 
-app.set("views","./Controllers/Login/views");
-
-app.get("/",(req,res)=>
+app.post("/login",async(req,res)=>
 {
-    res.render("home");
+    let user=await User.findOne(req.body);
+    req.session.user=user;
+    res.redirect("/");
 });
 
+app.get("/logout",middleware.isLogged,async(req,res)=>
+{
+    req.session.destroy();
+    res.redirect("/");
+});
 
 
 export default app;

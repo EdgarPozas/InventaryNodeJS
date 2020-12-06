@@ -1,0 +1,25 @@
+include ../../Default/default
+doctype html
+html(lang="es")
+    head
+        +head("Home")
+    body
+        +navigation-bar()
+        .col-11.m-auto
+            .row.mt-5.p-5
+                if products.length==0
+                    .col-12.p-5
+                        .p-5
+                            h1 ¡Oh no!, you have not added a product
+                            p if you want to add a product click the next button
+                            button(data-toggle="modal" data-target="#modalNewProduct") New product
+                else
+                    each product in products
+                        +item_product(product)
+        +footer()
+        +modal_predefined("modalEdit")
+        +modal_predefined("modalNewProduct")
+        +modal_predefined("modalUpdateProduct")
+        +scripts()
+        script(src=baseUrl+"/js/edit-user.js")
+        script(src=baseUrl+"/js/edit-product.js")
