@@ -1,1 +1,80 @@
+include ../../Default/default
 
+-const options=[{image:"carousel_1",title:"Amazing clothes",description:"You can find amazing clothes!"},{image:"carousel_2",title:"With amazing discounts!",description:"Our discounts are awesome"},{image:"carousel_3",title:"Yep your see correctly",description:"We are here again"}]
+
+-const features=[{image:"feature_1",title:"Find",description:"The best products"},{image:"feature_2",title:"Imagine",description:"Your perfect outfit"},{image:"feature_3",title:"Dream",description:"Your dreams become real"}]
+
+doctype html
+html(lang="es")
+    head
+        +head("Home")
+    body
+        +navigation-bar()
+        .col-12
+            .row
+                .col-12.box-shadow
+            .row
+                div(data-ride="carousel")#carouselOptions.carousel.slide
+                    ol.carousel-indicators
+                        each option,index in options
+                            li(data-target="#carouselOptions" data-slide-to=index class=(index==0?"active":""))
+                    .carousel-inner
+                        each option,index in options
+                            div(class=(index==0?"active":"")).carousel-item
+                                img(src=baseUrl+"/images/"+option.image+".jpg" alt="image").d-block.w-100.img-carousel
+                                div.carousel-caption.d-none.d-md-block
+                                    h5 #{option.title}
+                                    p #{option.description}
+                    a(href="#carouselOptions" role="button" data-slide="prev").carousel-control-prev
+                        span.carousel-control-prev-icon
+                        span.sr-only Previous
+                    a(href="#carouselOptions" role="button" data-slide="next").carousel-control-next
+                        span.carousel-control-next-icon
+                        span.sr-only Next
+        .col-11.m-auto
+            .row.mt-5
+                .col-12
+                    .row
+                        each feature in features
+                            .col-3.m-auto.text-center.p-5.item-feature
+                                .row
+                                    .col-6.m-auto
+                                        .row
+                                            img(src=baseUrl+"/images/"+feature.image+".jpg").img-rounded
+                                .row.mt-5
+                                    h2.w-100.font-weight #{feature.title}
+                                .row
+                                    p.w-100 #{feature.description}
+        .col-12.background-white.mt-5.box-shadow
+            .row.p-5
+                .col-10.m-auto
+                    .row
+                        .col-6.m-auto
+                            h1 Amazing Title!
+                            p This is a amazing content, you can see it!
+                        .col-6
+                            img(src=baseUrl+"/images/extra_1.jpg").img-semi-rounded
+            .row
+                .col-10.m-auto
+                    hr
+            .row.p-5
+                .col-10.m-auto
+                    .row
+                        .col-6
+                            img(src=baseUrl+"/images/extra_2.jpg" style="width:80%;").img-semi-rounded
+                        .col-6.m-auto.text-right
+                            h1 Uff what's that !
+                            p This is a amazing content, you can see it!
+        .col-11.m-auto
+            .row.p-5.text-center
+                .col-12
+                    h1 The future is now!
+                    p Everything you want buy you'll find here, let's start and <b>register</b> to post and buy amazing products!
+                
+        +footer()
+        +scripts()
+            
+            
+        
+        
+        

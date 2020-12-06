@@ -1,7 +1,7 @@
 import express from "express";
 const app= express();
 
-app.set("views","./Controllers/Home/views");
+app.set("views","./Controllers/Producy/views");
 
 app.get("/",(req,res)=>
 {
