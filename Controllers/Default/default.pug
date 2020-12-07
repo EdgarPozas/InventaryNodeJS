@@ -186,7 +186,7 @@ mixin item_product(product)
             .col-12.item-products
                 .row
                     .col-12
-                        img(src=product.image).img_rounded
+                        img(src=product.image).img_rounded.w-100
                 .row
                     .col-12
                         h3 #{product.name}
@@ -200,7 +200,7 @@ mixin item_product(product)
                     .col-12
                         .row
                             if user
-                                if user.products.filter(x=>x==product._id)
+                                if user.products.filter(x=>x==product._id)!=""
                                     .col-4.m-auto
                                         a(href=baseUrl+"/delete-product/"+product._id).m-2
                                             button.btn.btn-danger Delete
@@ -208,5 +208,5 @@ mixin item_product(product)
                                         button(onclick="appRegister.select("+JSON.stringify(product)+")").btn.btn-primary Edit
                                 else
                                     .col-4.m-auto
-                                        a(href=baseUrl+"/products/"+product._id).m-2
+                                        a(href=baseUrl+"/buy-product/"+product._id).m-2
                                             button.btn.btn-dark Buy
